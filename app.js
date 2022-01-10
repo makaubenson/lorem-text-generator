@@ -24,7 +24,18 @@ form.addEventListener("submit", function (e) {
   // console.log(value);
   // console.log(isNaN(value));//returns true
 
-  if (isNaN(value) || value < 0 || value > 9) {
-    result.innerHTML = `<p class="result">${text[0]}</p>`;
+  const random = Math.floor(Math.random() * text.length);
+  if (isNaN(value) || value <= 0 || value > 9) {
+    result.innerHTML = `<p class="result">${text[random]}</p>`;
+  } else {
+    let tempText = text.slice(0, value);
+    // console.log(tempText);
+    tempText = tempText
+      .map(function (paragraph) {
+        return `<p class="result">${paragraph}</p>`;
+      })
+      .join("");
+    // console.log(tempText);
+    result.innerHTML = tempText;
   }
 });
